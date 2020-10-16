@@ -1,0 +1,68 @@
+<div class="container">
+    <div class="card">
+        <div class="row">
+            <div class="col-md-5">
+                <form #employeeForm="ngForm" (ngSubmit)="onSubmit(employeeForm)">
+                    <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="myservice.selectedEmployee._id">
+                    <div class="row">
+                        <div class="form-group">
+                            <label>Name :</label>
+                            <input class="form-control" type="text" id="" name="name" placeholder="Enter Name" #name="ngModel" [(ngModel)]="myservice.selectedEmployee.name">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                            <label>Position :</label>
+                            <input class="form-control" type="text" name="position" #name="ngModel" [(ngModel)]="myservice.selectedEmployee.position">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                            <input class="form-control" type="text" name="office" #name="ngModel" [(ngModel)]="myservice.selectedEmployee.office">
+                            <label>Office :</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field">
+                            <input class="form-control" type="text" name="salary" #name="ngModel" [(ngModel)]="myservice.selectedEmployee.salary">
+                            <label>Salary :</label>
+                        </div>
+                    </div>
+                    <div class="content">
+                        <button class="btn btn-primary" type="submit" [disabled]="!employeeForm.valid">Submit</button>
+                        <button class="btn btn-success" type="button" (click)="resetForm(employeeForm)">Reset</button>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-7">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Position</th>
+                        <th scope="col">Office</th>
+                        <th scope="col">Salary</th>
+                        <th scope="col">Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let emp of myservice.employees">
+                        <td>{{emp.name}}</td>
+                        <td>{{emp.position}}</td>
+                        <td>{{emp.office}}</td>
+                        <td>{{emp.salary}}</td>
+                        <td>
+                            <a class="btn btn-info" type="button" href="#" (click)="onEdit(emp)">
+                                Edit
+                            </a>
+                            <a class="btn btn-danger" type="button" href="#" (click)="onDelete(emp._id,employeeForm)">
+                                Delete
+                            </a>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+            </div>
+        </div>
+    </div>    
+</div>
